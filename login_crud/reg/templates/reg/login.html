@@ -1,0 +1,62 @@
+{% extends 'reg/base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center h-50">
+    <div class="user_card">
+        <div class="d-flex justify-content-center">
+            <h3 id="form-title">LOGIN</h3>
+        </div>
+        <div class="d-flex justify-content-center form_container">
+            <form method="POST" action="" novalidate>
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    {{form.username}}
+                </div>
+                <div class="input-group mb-2">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    {{form.password}}
+                </div>
+
+                <div class="d-flex justify-content-center mt-3 login_container">
+                    <input class="btn login_btn" type="submit" value="Login">
+                </div>
+
+                <p> {% if form.non_field_errors %}
+                    {% for error in form.non_field.errors %}
+                    {{ error }}
+                    {% endfor %}
+                    {% endif %}</p>
+                {% if messages %}
+                {% for messages in messages %}
+                <small {% if messages.tags %} class="{{ message.tags}}" {% endif %}> {{messages}}
+                </small>
+                {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+        <div class="mt-4">
+            <div class="d-flex justify-content-center links">
+                Don't have an account? <a href="{% url 'signup' %}" class=" btn btn-primary ml-2">Sign Up</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    //Query All input fields
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = 'Username';
+    form_fields[2].placeholder = 'Enter password';
+    for (var field in form_fields) {
+        form_fields[field].className += ' form-control'
+    }
+</script>
+
+{% endblock content %}
