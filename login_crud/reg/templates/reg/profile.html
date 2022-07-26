@@ -2,11 +2,12 @@
 
 {% block content %}
 
-
 <div class=" row ">
-    <div class=" img-fluid  rounded  ">
+    <div class=" img-fluid">
         <h3 class="text-center alert alert-info ">Welcome {{name}} ,This is Your Profile Page</h3>
-        <div class="container h-100 ">
+
+        <a href="{% url 'logout' %}" class="btn btn-primary float-right">Logout</a>
+        <div class="container ">
             {% if messages %}
             {% for message in messages %}
             <div {% if message.tags %} class="{{ messages.tags}}alert alert-success" {% endif %}>
@@ -14,9 +15,9 @@
             </div>
             {% endfor %}
             {% endif %}
-            <a href="{% url 'logout' %}" class="btn btn-primary float-right">Logout</a>
+
             <div class="row " style="padding-left:12px;">
-                <div class="col-sm-5">
+                <div class="col">
                     <h4 class="text-center alert alert-info">Add New Customer</h4>
                     <form action="" method="POST">
                         {% csrf_token %}
