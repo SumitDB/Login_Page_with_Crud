@@ -1,4 +1,3 @@
-
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -71,7 +70,7 @@ def delete_data(request, id):
 # This function will update
 def update_data(request, id):
     if request.method == 'POST':
-        pi = Customer.objects.get(pk = id)
+        pi = Customer.objects.get(pk=id)
         fmm = CustomerReg(request.POST, instance=pi)
         if fmm.is_valid():
             fmm.save()
